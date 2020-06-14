@@ -43,13 +43,13 @@
             this.cboDrive = new System.Windows.Forms.ComboBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiBack = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCut = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCancel = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiBack = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.lvFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -85,7 +85,7 @@
             this.lvFiles.UseCompatibleStateImageBehavior = false;
             this.lvFiles.View = System.Windows.Forms.View.Details;
             this.lvFiles.SelectionChanged += new System.EventHandler(this.lvFiles_SelectionChanged);
-            this.lvFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lvFiles_KeyDown);
+            this.lvFiles.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvFiles_KeyUp);
             this.lvFiles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvFiles_MouseDoubleClick);
             this.lvFiles.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lvFiles_MouseUp);
             // 
@@ -141,7 +141,7 @@
             this.navigator.View = System.Windows.Forms.View.Details;
             this.navigator.VirtualMode = true;
             this.navigator.SelectedIndexChanged += new System.EventHandler(this.navigator_SelectedIndexChanged);
-            this.navigator.KeyDown += new System.Windows.Forms.KeyEventHandler(this.navigator_KeyDown);
+            this.navigator.KeyUp += new System.Windows.Forms.KeyEventHandler(this.navigator_KeyUp);
             this.navigator.MouseUp += new System.Windows.Forms.MouseEventHandler(this.navigator_MouseUp);
             // 
             // olvName
@@ -217,6 +217,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(121, 158);
             // 
+            // tsmiBack
+            // 
+            this.tsmiBack.Name = "tsmiBack";
+            this.tsmiBack.Size = new System.Drawing.Size(120, 22);
+            this.tsmiBack.Text = "Back";
+            this.tsmiBack.Click += new System.EventHandler(this.tsmiBack_Click);
+            // 
             // tsmiCopy
             // 
             this.tsmiCopy.Name = "tsmiCopy";
@@ -258,13 +265,6 @@
             this.tsmiCancel.Size = new System.Drawing.Size(120, 22);
             this.tsmiCancel.Text = "Cancel";
             this.tsmiCancel.Click += new System.EventHandler(this.tsmiCancel_Click);
-            // 
-            // tsmiBack
-            // 
-            this.tsmiBack.Name = "tsmiBack";
-            this.tsmiBack.Size = new System.Drawing.Size(180, 22);
-            this.tsmiBack.Text = "Back";
-            this.tsmiBack.Click += new System.EventHandler(this.tsmiBack_Click);
             // 
             // UC_Explorer
             // 

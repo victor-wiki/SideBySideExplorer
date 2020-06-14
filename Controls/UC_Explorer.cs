@@ -23,8 +23,8 @@ namespace SideBySideExplorer.Controls
         private CancellationTokenSource cancellationTokenSource;
         private bool isMoving = false;
         private bool isCanceled = false;
+        private ObjectListView currentListView;
         public FileClipBoard ClipBoard { get; set; }
-
         public ClipboardChangeHandler ClipboardChange;
         public FeedbackHandler OnFeedback;
 
@@ -493,6 +493,8 @@ namespace SideBySideExplorer.Controls
                 this.lvFiles.Tag = null;
                 this.lvFiles.Items.Clear();
             }
+
+            this.currentListView = this.navigator;
         }
 
         private void lvFiles_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -500,13 +502,13 @@ namespace SideBySideExplorer.Controls
             this.EnterSubFolder();
         }
 
-        private void lvFiles_KeyDown(object sender, KeyEventArgs e)
-        {
+        private void lvFiles_KeyUp(object sender, KeyEventArgs e)
+        {           
             this.HandleKeyEvent(sender, e);
         }
 
         private void HandleKeyEvent(object sender, KeyEventArgs e)
-        {
+        {            
             if (e.Control)
             {
                 if (e.KeyCode == Keys.C)
@@ -521,14 +523,7 @@ namespace SideBySideExplorer.Controls
                 {
                     this.Paste();
                 }
-            }
-            else if (e.Shift)
-            {
-                if (e.KeyCode == Keys.Delete)
-                {
-                    this.DeleteItems(true);
-                }
-            }
+            }           
             else
             {
                 if (e.KeyCode == Keys.Enter)
@@ -541,9 +536,11 @@ namespace SideBySideExplorer.Controls
                 }
                 else if (e.KeyCode == Keys.Delete)
                 {
-                    this.DeleteItems(false);
+                    this.DeleteItems();
                 }
             }
+
+            this.currentListView = sender as ObjectListView;
         }
 
         private void EnterSubFolder()
@@ -598,9 +595,10 @@ namespace SideBySideExplorer.Controls
                 this.tsmiRefresh.Visible = (!isNavigator && count == 0) || (isNavigator && count == 1 && isSelectFolder);
                 this.tsmiCancel.Visible = this.isMoving;
 
-                this.contextMenuStrip1.Show(Cursor.Position);
-                this.contextMenuStrip1.Tag = sender as ObjectListView;
+                this.contextMenuStrip1.Show(Cursor.Position);               
             }
+
+            this.currentListView = sender as ObjectListView;
         }
 
         private void lvFiles_MouseUp(object sender, MouseEventArgs e)
@@ -613,7 +611,7 @@ namespace SideBySideExplorer.Controls
             this.HandleMouseUp(sender, e);
         }
 
-        private void navigator_KeyDown(object sender, KeyEventArgs e)
+        private void navigator_KeyUp(object sender, KeyEventArgs e)
         {
             this.HandleKeyEvent(sender, e);
         }
@@ -625,12 +623,12 @@ namespace SideBySideExplorer.Controls
 
         private ObjectListView GetCurrentListView()
         {
-            return (this.contextMenuStrip1.Tag as ObjectListView).Name == this.navigator.Name ? this.navigator : this.lvFiles;
+            return this.currentListView;
         }
 
         private void tsmiDelete_Click(object sender, EventArgs e)
         {
-            this.DeleteItems(false);
+            this.DeleteItems();
         }
 
         private void tsmiCut_Click(object sender, EventArgs e)
@@ -688,7 +686,7 @@ namespace SideBySideExplorer.Controls
             this.ClipBoard = null;
         }
 
-        private void DeleteItems(bool permanently)
+        private void DeleteItems()
         {
             ObjectListView listView = this.GetCurrentListView();
 
@@ -798,6 +796,6 @@ namespace SideBySideExplorer.Controls
             {
                 this.Feedback($"{this.lvFiles.Items.Count} item(s)");
             }
-        }
+        }     
     }
 }

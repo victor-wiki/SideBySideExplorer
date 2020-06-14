@@ -72,7 +72,7 @@
     <Compile Include="Model\TransferProgress.cs" />
     <Compile Include="Model\FileClipBoard.cs" />
     <Compile Include="Model\FileCopyInfo.cs" />
-    <Compile Include="MyFileSystemInfo.cs" />
+    <Compile Include="Model\MyFileSystemInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\SysImageListHelper.cs" />
