@@ -538,6 +538,10 @@ namespace SideBySideExplorer.Controls
                 {
                     this.DeleteItems();
                 }
+                else if(e.KeyCode == Keys.F5)
+                {
+                    this.RefreshCurrentListView();
+                }
             }
 
             this.currentListView = sender as ObjectListView;
@@ -725,6 +729,11 @@ namespace SideBySideExplorer.Controls
         }
 
         private void tsmiRefresh_Click(object sender, EventArgs e)
+        {
+            this.RefreshCurrentListView();
+        }
+
+        private void RefreshCurrentListView()
         {
             ObjectListView listView = this.GetCurrentListView();
 
