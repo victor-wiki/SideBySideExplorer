@@ -44,11 +44,6 @@ namespace SideBySideExplorer.Helper
 
         public static Task CopyFile(string source, string target, Action<TransferProgress> progress, CancellationToken cancellationToken= default(CancellationToken))
         {
-            if(File.Exists(target))
-            {
-                return Task.Run(() => { });
-            }
-
             return FileTransferManager.CopyWithProgressAsync(source, target, progress, false, false, cancellationToken);
         }
 
